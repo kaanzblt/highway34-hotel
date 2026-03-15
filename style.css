@@ -832,68 +832,103 @@ header {
     box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
 }
 
-/* --- MOBİL ÖZEL DÜZELTMELER (Kodun En Altına Ekle) --- */
+/* --- MOBİL UYUMLULUK KÖKTEN ÇÖZÜM (Eskileri sil bunu yapıştır) --- */
 
-@media (max-width: 768px) {
-    /* 1. Header Menü Düzenlemesi: Yazıların birbirine girmesini engeller */
-    .nav-links {
-        gap: 15px; /* Boşlukları daralt */
-    }
-
-    .nav-links a {
-        font-size: 0.85rem; /* Yazıları küçült */
-    }
-
+@media (max-width: 992px) {
+    /* 1. ÜST MENÜ & LOGO DÜZENİ */
     .nav-content {
-        flex-direction: column; /* Logoyu üste, menüyü alta al */
-        gap: 10px;
+        padding: 0 20px;
+        position: relative;
     }
 
-    /* 2. Görsel Zoom Sorunu Çözümü: 
-       Mobilde 'fixed' arka planlar sorun çıkarır, onları 'scroll' yapıyoruz */
+    /* Üç çizgili menü butonu mobilde görünür olsun */
+    .menu-toggle {
+        display: block !important;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--ana-renk);
+    }
+
+    .nav-links {
+        display: none; /* Varsayılan olarak kapalı */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 20px 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-bottom: 3px solid var(--altin);
+        z-index: 999;
+        gap: 15px;
+    }
+
+    /* JS ile açıldığında gelecek olan sınıf */
+    .nav-links.active {
+        display: flex !important;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 2. HERO GÖRSELİ & ZOOM SORUNU */
     .hero {
-        background-attachment: scroll !important;
+        background-attachment: scroll !important; /* Zoom yapan hatalı özelliği mobilde iptal ettik */
         background-position: center center;
-        height: 60vh; /* Mobilde ekranı çok kaplamasın */
+        height: 70vh; /* Telefon ekranında çok boğmasın */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .room-img {
-        height: 200px; /* Görsel yüksekliğini mobilde optimize et */
+    .hero-text h1 {
+        font-size: 2rem !important; /* "HOŞ GELDİNİZ" boyutunu küçülttük */
+        letter-spacing: 1px;
     }
 
-    /* 3. Otel Hizmetleri Yazı Kayması: 
-       Sola yapışık duran yazıları hizalıyoruz */
+    .hero-text p {
+        font-size: 1rem !important;
+        padding: 0 15px;
+    }
+
+    /* 3. OTEL HİZMETLERİ & YAZILAR */
     .services-list-grid {
-        padding: 0 15px; /* Kenarlardan nefes aldır */
+        grid-template-columns: 1fr; /* Mobilde tek sütun yap */
+        padding: 0 20px;
+        text-align: left;
     }
 
     .service-col li {
-        text-align: left;
         font-size: 0.95rem;
-        padding: 10px 0;
+        text-decoration-thickness: 1px;
     }
 
-    /* 4. Sabit Butonlar ve Fazla WhatsApp Sorunu:
-       Ekrandaki fazla butonu gizlemek ve hizalamak için */
+    /* 4. WHATSAPP & ARAMA BUTONLARI */
     .fixed-contact-buttons {
         right: 15px;
         bottom: 15px;
+        gap: 8px;
     }
 
-    /* Eğer sitenin en altında (footer içinde) manuel bir WP butonu varsa 
-       onu bu class ile CSS'den gizleyebiliriz */
-    .footer-premium .whatsapp-button-extra { 
-        display: none !important; 
+    .call-float, .whatsapp-float {
+        padding: 12px;
+        border-radius: 50%;
+    }
+
+    .call-float span, .whatsapp-float span {
+        display: none; /* Mobilde sadece ikon kalsın, yazı sığmaz */
     }
 }
 
-/* --- KRİTİK DÜZELTME: FORM VE GÖRSELLERİN TAŞMASINI ENGELLER --- */
+/* EKSTRA: Görsellerin ve kutuların dışarı taşmasını önle */
+* {
+    max-width: 100vw;
+}
+
 img {
     max-width: 100%;
     height: auto;
-}
-
-.booking-form input, 
-.booking-form textarea {
-    max-width: 100%; /* Mobilde kutunun dışarı çıkmasını engeller */
 }

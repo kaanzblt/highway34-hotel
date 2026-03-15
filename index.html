@@ -261,9 +261,6 @@
     <span>Hızlı Rezervasyon</span>
 </a>
 
-<a href="https://wa.me/905389386623?text=Merhaba,%20Highway%2034%20Hotel%20hakkında%20bilgi%20almak%20istiyorum." target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
 
 <div class="fixed-contact-buttons">
     <a href="tel:+905389386623" class="call-float">
@@ -276,6 +273,18 @@
         <span>WhatsApp</span>
     </a>
 </div>
+
+<script>
+    // Menü Açma/Kapama İşlevi
+    const menuToggle = document.querySelector('.menu-toggle'); // Üç çizgi ikonu
+    const navLinks = document.querySelector('.nav-links'); // Menü listesi
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active'); // 'active' class'ını ekler/çıkarır
+        });
+    }
+</script>
 
 </body>
 </html>
