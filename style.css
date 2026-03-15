@@ -832,3 +832,68 @@ header {
     box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
 }
 
+/* --- MOBİL ÖZEL DÜZELTMELER (Kodun En Altına Ekle) --- */
+
+@media (max-width: 768px) {
+    /* 1. Header Menü Düzenlemesi: Yazıların birbirine girmesini engeller */
+    .nav-links {
+        gap: 15px; /* Boşlukları daralt */
+    }
+
+    .nav-links a {
+        font-size: 0.85rem; /* Yazıları küçült */
+    }
+
+    .nav-content {
+        flex-direction: column; /* Logoyu üste, menüyü alta al */
+        gap: 10px;
+    }
+
+    /* 2. Görsel Zoom Sorunu Çözümü: 
+       Mobilde 'fixed' arka planlar sorun çıkarır, onları 'scroll' yapıyoruz */
+    .hero {
+        background-attachment: scroll !important;
+        background-position: center center;
+        height: 60vh; /* Mobilde ekranı çok kaplamasın */
+    }
+
+    .room-img {
+        height: 200px; /* Görsel yüksekliğini mobilde optimize et */
+    }
+
+    /* 3. Otel Hizmetleri Yazı Kayması: 
+       Sola yapışık duran yazıları hizalıyoruz */
+    .services-list-grid {
+        padding: 0 15px; /* Kenarlardan nefes aldır */
+    }
+
+    .service-col li {
+        text-align: left;
+        font-size: 0.95rem;
+        padding: 10px 0;
+    }
+
+    /* 4. Sabit Butonlar ve Fazla WhatsApp Sorunu:
+       Ekrandaki fazla butonu gizlemek ve hizalamak için */
+    .fixed-contact-buttons {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    /* Eğer sitenin en altında (footer içinde) manuel bir WP butonu varsa 
+       onu bu class ile CSS'den gizleyebiliriz */
+    .footer-premium .whatsapp-button-extra { 
+        display: none !important; 
+    }
+}
+
+/* --- KRİTİK DÜZELTME: FORM VE GÖRSELLERİN TAŞMASINI ENGELLER --- */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.booking-form input, 
+.booking-form textarea {
+    max-width: 100%; /* Mobilde kutunun dışarı çıkmasını engeller */
+}
